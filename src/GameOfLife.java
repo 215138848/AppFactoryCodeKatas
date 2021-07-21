@@ -6,22 +6,21 @@ import java.util.Scanner;
  *
  */
 
-
 public class GameOfLife {
 
     public static void main( String[] args )    {
         System.out.println( "Welcome to Conway's Game of Life." );
         Scanner scan = new Scanner(System.in);
         System.out.println( "Please enter the size of the board?" );
-        System.out.print( "rows: " );
+        System.out.print( "Number of Rows: " );
         int rowSize = scan.nextInt();
-        System.out.print( "columns: " );
+        System.out.print( "Number of Columns: " );
         int columnSize = scan.nextInt();
 
         String [][] board = GenNewBoard(rowSize,columnSize);
 
         System.out.println( "How many generations do you want to see?" );
-        System.out.print( "generations: " );
+        System.out.print( "Number of Generations: " );
         int generations = scan.nextInt();
 
         //String [][] board = {{"_","#","#","_","_"}, {"_","#","_","#","_"}, {"_","#","#","_","#"} };
@@ -38,7 +37,7 @@ public class GameOfLife {
             board = life(board, rowSize, columnSize);
         }
         System.out.println( "       " );
-        System.out.println( "    GAME OVER    " );
+        System.out.println( "          GAME OVER       " );
         System.out.println( "       " );
         System.out.println( "    Thank You for Playing    " );
     }
@@ -51,7 +50,7 @@ public class GameOfLife {
 
             for (int i=0; i<columnSize; i++ ){ /*i = columns*/
 
-                if(board[row][i] =="#"){
+                if(board[row][i].equals("#")){
                     //if space is populated
                     int neighbourCount = neighbourCounter(board, row, i, rowSize, columnSize);
                     if(neighbourCount<=1){
@@ -64,7 +63,7 @@ public class GameOfLife {
                         newBoard[row][i] = "_"; //is dead
                     }
                 }
-                if(board[row][i] =="_"){
+                if(board[row][i].equals("_")){
                     //if space is unpopulated
                     int neighbourCount = neighbourCounter(board, row, i, rowSize, columnSize);
                     if(neighbourCount==3 ){
@@ -104,27 +103,27 @@ public class GameOfLife {
         int neighbourCount = 0;
         if(y!=0){
             if(x!=0){
-                if(board[x-1][y-1] == "#"){neighbourCount++;}           //Start at bottom left
+                if(board[x-1][y-1].equals("#")){neighbourCount++;}           //Start at bottom left
             }
-            if(board[x][y-1] == "#"){neighbourCount++;}
+            if(board[x][y-1].equals("#")){neighbourCount++;}
             if(x!=rowSize-1){
-                if(board[x+1][y-1] == "#"){neighbourCount++;}
+                if(board[x+1][y-1].equals("#")){neighbourCount++;}
             }
         }
         if(x!=0){
-            if(board[x-1][y] == "#"){neighbourCount++;}
+            if(board[x-1][y].equals("#")){neighbourCount++;}
         }
-        //if(board[x][y] == "#"){neighbourCount++;}     must not count the original
+        //if(board[x][y].equals("#")){neighbourCount++;}     must not count the original
         if(x!=rowSize-1){
-            if(board[x+1][y] == "#"){neighbourCount++;}
+            if(board[x+1][y].equals("#")){neighbourCount++;}
         }
         if(y!=columnSize-1){
             if(x!=0){
-                if(board[x-1][y+1] == "#"){neighbourCount++;}
+                if(board[x-1][y+1].equals("#")){neighbourCount++;}
             }
-            if(board[x][y+1] == "#"){neighbourCount++;}
+            if(board[x][y+1].equals("#")){neighbourCount++;}
             if(x!=rowSize-1){
-                if(board[x+1][y+1] == "#"){neighbourCount++;}           //End at top right
+                if(board[x+1][y+1].equals("#")){neighbourCount++;}           //End at top right
             }
         }
 
