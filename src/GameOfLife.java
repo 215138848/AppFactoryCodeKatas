@@ -11,30 +11,41 @@ public class GameOfLife {
     public static void main( String[] args )    {
         System.out.println( "Welcome to Conway's Game of Life." );
         Scanner scan = new Scanner(System.in);
-        System.out.println( "Please enter the size of the board?" );
-        System.out.print( "Number of Rows: " );
-        int rowSize = scan.nextInt();
-        System.out.print( "Number of Columns: " );
-        int columnSize = scan.nextInt();
 
-        String [][] board = GenNewBoard(rowSize,columnSize);
+        boolean continue1 = true;
+        while (continue1){
+            System.out.println( "Please enter the size of the board?" );
+            System.out.print( "Number of Rows: " );
+            int rowSize = scan.nextInt();
+            System.out.print( "Number of Columns: " );
+            int columnSize = scan.nextInt();
 
-        System.out.println( "How many generations do you want to see?" );
-        System.out.print( "Number of Generations: " );
-        int generations = scan.nextInt();
+            String [][] board = GenNewBoard(rowSize,columnSize);
 
-        //String [][] board = {{"_","#","#","_","_"}, {"_","#","_","#","_"}, {"_","#","#","_","#"} };
+            System.out.println( "How many generations do you want to see?" );
+            System.out.print( "Number of Generations: " );
+            int generations = scan.nextInt();
 
-        for(int i=0; i<=generations; i++){
-            System.out.println("Generation " + i + ":");
-            //printing board
-            for (int rows =0; rows<rowSize; rows++){
-                for (int columns=0; columns<columnSize; columns++){
-                    System.out.print(board[rows][columns] + "");
+            for(int i=0; i<=generations; i++){
+                System.out.println("Generation " + i + ":");
+                //printing board
+                for (int rows =0; rows<rowSize; rows++){
+                    for (int columns=0; columns<columnSize; columns++){
+                        System.out.print(board[rows][columns] + "");
+                    }
+                    System.out.println("");
                 }
-                System.out.println("");
+                board = life(board, rowSize, columnSize);
             }
-            board = life(board, rowSize, columnSize);
+
+            System.out.println( "Play again? y/n" );
+            String ans = scan.next();
+            if(ans.equalsIgnoreCase("y")){
+                continue1=true;
+            }
+            else {
+                continue1=false;
+            }
         }
         System.out.println( "       " );
         System.out.println( "          GAME OVER       " );
